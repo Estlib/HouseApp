@@ -17,6 +17,7 @@ namespace HouseApp.Models.House
         public DateOnly BuiltAt { get; set; }
         public int FloorCount { get; set; }
         public string FullAddress { get; set; }
+
         //DB variables
         public DateTime EntryCreatedAt { get; set; }
         public DateTime EntryUpdatedAt { get; set;}

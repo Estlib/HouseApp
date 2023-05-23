@@ -1,8 +1,13 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace HouseApp.Models.House
+namespace HouseApp.Core.Dto
 {
-    public class HouseDeleteViewModel
+    public class HouseDto
     {
         public Guid? Id { get; set; }
         public double SquareMeters { get; set; }

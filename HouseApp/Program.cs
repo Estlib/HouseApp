@@ -1,3 +1,4 @@
+using HouseApp.ApplicationServices.Services;
 using HouseApp.Core.ServiceInterface;
 using HouseApp.Data;
 using Microsoft.EntityFrameworkCore;

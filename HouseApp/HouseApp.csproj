@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HouseApp.ApplicationServices\HouseApp.ApplicationServices.csproj" />
     <ProjectReference Include="..\HouseApp.Data\HouseApp.Data.csproj" />
   </ItemGroup>
 

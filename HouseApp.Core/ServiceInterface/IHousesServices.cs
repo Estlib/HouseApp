@@ -13,5 +13,6 @@ namespace HouseApp.Core.ServiceInterface
         Task<House> GetAsync(Guid id);
         Task<House> Create(HouseDto dto);
         Task<House> Update(HouseDto dto);
+        Task<House> Delete(Guid id);
     }
 }

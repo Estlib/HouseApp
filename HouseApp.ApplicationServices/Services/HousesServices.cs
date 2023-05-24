@@ -77,5 +77,15 @@ namespace HouseApp.ApplicationServices.Services
             await _context.SaveChangesAsync();
             return domain;
         }
+        //deletes an existing object from the database based on guid
+        public async Task<House> Delete(Guid id)
+        {
+            var houseId = await _context.Houses
+                .FirstOrDefaultAsync(x => x.Id == id);
+            _context.Houses.Remove(houseId);
+            await _context.SaveChangesAsync();
+
+            return houseId;
+        }
     }
 }

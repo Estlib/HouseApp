@@ -1,0 +1,67 @@
+﻿@model HouseApp.Models.House.HouseDetailsViewModel
+
+<h1>Details</h1>
+<div>
+    <h4>Houses</h4>
+    <hr/>
+    <d1 class="row">
+        <div class="form-group-row">
+            <label asp-for="SquareMeters" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.SquareMeters)
+        </div>
+        <div class="form-group-row">
+            <label asp-for="HouseColours" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.HouseColours)
+        </div>
+        <div class="form-group-row">
+            <label asp-for="RoofType" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.RoofType)
+        </div>
+        <div class="form-group-row">
+            <label asp-for="TotalRoomCount" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.TotalRoomCount)
+        </div>
+        <div class="form-group-row">
+            <label asp-for="BathroomCount" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.BathroomCount)
+        </div>
+        <div class="form-group-row">
+            <label asp-for="BedroomCount" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.BedroomCount)
+        </div>
+        <div class="form-group-row">
+            @if (Model.IsForRentOrSale == true)
+            {
+                <label asp-for="IsForRentOrSale" class="col-sm-2 col-form-label">For Sale</label>
+            }
+            else
+            {
+                <label asp-for="IsForRentOrSale" class="col-sm-2 col-form-label">For Rent</label>
+            }
+        </div>
+        <div class="form-group-row">
+            <label asp-for="Price" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.Price)
+        </div>
+        <div class="form-group-row">
+            <label asp-for="BuildingAge" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.BuildingAge)
+        </div>
+        <div class="form-group-row">
+            <label asp-for="BuiltAt" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.BuiltAt)
+        </div>
+        <div class="form-group-row">
+            <label asp-for="FloorCount" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.FloorCount)
+        </div>
+        <div class="form-group-row">
+            <label asp-for="FullAddress" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.FullAddress)
+        </div>
+        <div class="form-group-row">
+            <label asp-for="EntryCreatedAt" class="col-sm-2 col-form-label"></label>
+            @Html.DisplayFor(model => model.EntryCreatedAt)
+        </div>
+    </d1>
+</div>

@@ -133,5 +133,73 @@ namespace HouseApp.Controllers
             }
             return RedirectToAction(nameof(Index), viewmodel);
         }
+        [HttpGet]
+        public async Task<IActionResult> Details(Guid id)
+        {
+            var house = await _housesServices.GetAsync(id);
+            if (house == null)
+            {
+                return NotFound();
+            }
+
+            var viewmodel = new HouseDetailsViewModel();
+            viewmodel.Id = house.Id;
+            viewmodel.SquareMeters = house.SquareMeters;
+            viewmodel.HouseColours = house.HouseColours;
+            viewmodel.RoofType = house.RoofType;
+            viewmodel.TotalRoomCount = house.TotalRoomCount;
+            viewmodel.BathroomCount = house.BathroomCount;
+            viewmodel.BedroomCount = house.BedroomCount;
+            viewmodel.IsForRentOrSale = house.IsForRentOrSale;
+            viewmodel.Price = house.Price;
+            viewmodel.BuildingAge = house.BuildingAge;
+            viewmodel.BuiltAt = house.BuiltAt;
+            viewmodel.FloorCount = house.FloorCount;
+            viewmodel.FullAddress = house.FullAddress;
+            viewmodel.EntryUpdatedAt = house.EntryUpdatedAt;
+            viewmodel.EntryCreatedAt = house.EntryCreatedAt;
+
+            return View(viewmodel);
+        }
+        //gets the item to be deleted
+        [HttpGet]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var house = await _housesServices.GetAsync(id);
+            if (house == null)
+            {
+                return NotFound();
+            }
+
+            var viewmodel = new HouseDeleteViewModel();
+            viewmodel.Id = house.Id;
+            viewmodel.SquareMeters = house.SquareMeters;
+            viewmodel.HouseColours = house.HouseColours;
+            viewmodel.RoofType = house.RoofType;
+            viewmodel.TotalRoomCount = house.TotalRoomCount;
+            viewmodel.BathroomCount = house.BathroomCount;
+            viewmodel.BedroomCount = house.BedroomCount;
+            viewmodel.IsForRentOrSale = house.IsForRentOrSale;
+            viewmodel.Price = house.Price;
+            viewmodel.BuildingAge = house.BuildingAge;
+            viewmodel.BuiltAt = house.BuiltAt;
+            viewmodel.FloorCount = house.FloorCount;
+            viewmodel.FullAddress = house.FullAddress;
+            viewmodel.EntryUpdatedAt = house.EntryUpdatedAt;
+            viewmodel.EntryCreatedAt = house.EntryCreatedAt;
+            return View(viewmodel);
+        }
+
+        //performs the deletion
+        [HttpPost]
+        public async Task<IActionResult> DeleteConfirmation(Guid id)
+        {
+            var houseId = await _housesServices.Delete(id);
+            if (houseId == null) 
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

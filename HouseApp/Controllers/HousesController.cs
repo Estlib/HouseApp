@@ -74,5 +74,62 @@ namespace HouseApp.Controllers
             }
             return RedirectToAction(nameof(Index), viewmodel);
         }
+        //gets the update form
+        [HttpGet]
+        public async Task<IActionResult> Update(Guid id) 
+        {
+            var house = await _housesServices.GetAsync(id);
+            if (house == null)
+            {
+                return NotFound();
+            }
+
+            var viewmodel = new HouseCreateUpdateViewModel();
+            viewmodel.Id = house.Id;
+            viewmodel.SquareMeters = house.SquareMeters;
+            viewmodel.HouseColours = house.HouseColours;
+            viewmodel.RoofType = house.RoofType;
+            viewmodel.TotalRoomCount = house.TotalRoomCount;
+            viewmodel.BathroomCount = house.BathroomCount;
+            viewmodel.BedroomCount = house.BedroomCount;
+            viewmodel.IsForRentOrSale = house.IsForRentOrSale;
+            viewmodel.Price = house.Price;
+            viewmodel.BuildingAge = house.BuildingAge;
+            viewmodel.BuiltAt = house.BuiltAt;
+            viewmodel.FloorCount = house.FloorCount;
+            viewmodel.FullAddress = house.FullAddress;
+            viewmodel.EntryUpdatedAt = house.EntryUpdatedAt;
+            return View("CreateUpdate", viewmodel);
+        }
+
+        //posts info from the updating form into the existing item
+        [HttpPost]
+        public async Task<IActionResult> Update(HouseCreateUpdateViewModel viewmodel)
+        {
+            var dto = new HouseDto()
+            {
+                Id = viewmodel.Id,
+                SquareMeters = viewmodel.SquareMeters,
+                HouseColours = viewmodel.HouseColours,
+                RoofType = viewmodel.RoofType,
+                TotalRoomCount = viewmodel.TotalRoomCount,
+                BathroomCount = viewmodel.BathroomCount,
+                BedroomCount = viewmodel.BedroomCount,
+                IsForRentOrSale = viewmodel.IsForRentOrSale,
+                Price = viewmodel.Price,
+                BuildingAge = viewmodel.BuildingAge,
+                BuiltAt = viewmodel.BuiltAt,
+                FloorCount = viewmodel.FloorCount,
+                FullAddress = viewmodel.FullAddress,
+                //db - creation is called, modification is called
+                EntryUpdatedAt = viewmodel.EntryUpdatedAt,
+            };
+            var result = await _housesServices.Create(dto);
+            if (result == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return RedirectToAction(nameof(Index), viewmodel);
+        }
     }
 }

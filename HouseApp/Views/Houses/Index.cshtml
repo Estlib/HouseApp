@@ -22,22 +22,23 @@
             @foreach (var house in Model)
             {
                 <tr>
-                    <td>@rowNumber</td>
-                    <td>@house.BathroomCount</td>
-                    <td>@house.BedroomCount</td>
+                    <td class="form-text">@rowNumber</td>
+                    <td class="form-text">
+                        @house.BathroomCount</td>
+                    <td class="form-text">@house.BedroomCount</td>
                     @if (house.IsForRentOrSale == true)
                     {
-                        <td>For Sale</td>
+                        <td class="form-text">For Sale</td>
                     }
                     else
                     {
-                        <td>For Rent</td>
+                        <td class="form-text">For Rent</td>
                     }
-                    <td>@house.Price</td>
-                    <td>@house.BuildingAge</td>
-                    <td>
+                    <td class="form-text">@house.Price</td>
+                    <td class="form-text">@house.BuildingAge</td>
+                    <td class="form-text">
                         <a asp-action=""></a>
-                        <a asp-action=""></a>
+                        <a asp-action="update" asp-controller="houses" asp-route-id="@house.Id" class="btn btn-primary">Update</a>
                         <a asp-action=""></a>
                     </td>
                 </tr>

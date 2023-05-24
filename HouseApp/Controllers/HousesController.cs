@@ -99,6 +99,7 @@ namespace HouseApp.Controllers
             viewmodel.FloorCount = house.FloorCount;
             viewmodel.FullAddress = house.FullAddress;
             viewmodel.EntryUpdatedAt = house.EntryUpdatedAt;
+            viewmodel.EntryCreatedAt = house.EntryCreatedAt;
             return View("CreateUpdate", viewmodel);
         }
 
@@ -121,10 +122,11 @@ namespace HouseApp.Controllers
                 BuiltAt = viewmodel.BuiltAt,
                 FloorCount = viewmodel.FloorCount,
                 FullAddress = viewmodel.FullAddress,
-                //db - creation is called, modification is called
+                //db
                 EntryUpdatedAt = viewmodel.EntryUpdatedAt,
+                EntryCreatedAt = viewmodel.EntryCreatedAt,
             };
-            var result = await _housesServices.Create(dto);
+            var result = await _housesServices.Update(dto);
             if (result == null)
             {
                 return RedirectToAction(nameof(Index));

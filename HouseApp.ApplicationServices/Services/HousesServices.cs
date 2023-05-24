@@ -52,5 +52,30 @@ namespace HouseApp.ApplicationServices.Services
             await _context.SaveChangesAsync();
             return house;
         }
+        //updates an existing house object in db as data transfer object
+        public async Task<House> Update(HouseDto dto)
+        {
+            var domain = new House()
+            {
+                Id = dto.Id,
+                SquareMeters = dto.SquareMeters,
+                HouseColours = dto.HouseColours,
+                RoofType = dto.RoofType,
+                TotalRoomCount = dto.TotalRoomCount,
+                BathroomCount = dto.BathroomCount,
+                BedroomCount = dto.BedroomCount,
+                IsForRentOrSale = dto.IsForRentOrSale,
+                Price = dto.Price,
+                BuildingAge = dto.BuildingAge,
+                BuiltAt = dto.BuiltAt,
+                FloorCount = dto.FloorCount,
+                FullAddress = dto.FullAddress,
+                EntryCreatedAt = dto.EntryCreatedAt,
+                EntryUpdatedAt = DateTime.Now
+            };
+            _context.Houses.Update(domain);
+            await _context.SaveChangesAsync();
+            return domain;
+        }
     }
 }

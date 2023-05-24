@@ -1,4 +1,5 @@
-﻿using HouseApp.Core.ServiceInterface;
+﻿using HouseApp.Core.Dto;
+using HouseApp.Core.ServiceInterface;
 using HouseApp.Data;
 using HouseApp.Models.House;
 using Microsoft.AspNetCore.Mvc;
@@ -34,6 +35,44 @@ namespace HouseApp.Controllers
                 }
                 );
             return View(result);
+        }
+        //gets the view for create
+        [HttpGet]
+        public IActionResult Create() 
+        {
+            HouseCreateUpdateViewModel house = new HouseCreateUpdateViewModel();
+            return View("CreateUpdate", house);
+        }
+
+        //posts info from the create form
+        [HttpPost]
+        public async Task<IActionResult> Create(HouseCreateUpdateViewModel viewmodel)
+        {
+            var dto = new HouseDto()
+            {
+                Id = viewmodel.Id,
+                SquareMeters = viewmodel.SquareMeters,
+                HouseColours = viewmodel.HouseColours,
+                RoofType = viewmodel.RoofType,
+                TotalRoomCount = viewmodel.TotalRoomCount,
+                BathroomCount = viewmodel.BathroomCount,
+                BedroomCount = viewmodel.BedroomCount,
+                IsForRentOrSale = viewmodel.IsForRentOrSale,
+                Price = viewmodel.Price,
+                BuildingAge = viewmodel.BuildingAge,
+                BuiltAt = viewmodel.BuiltAt,
+                FloorCount = viewmodel.FloorCount,
+                FullAddress = viewmodel.FullAddress,
+                //db - creation is called, modification is called
+                EntryCreatedAt = viewmodel.EntryCreatedAt,
+                EntryUpdatedAt = viewmodel.EntryUpdatedAt,
+            };
+            var result = await _housesServices.Create(dto);
+            if (result == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            return RedirectToAction(nameof(Index), viewmodel);
         }
     }
 }

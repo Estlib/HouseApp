@@ -4,6 +4,8 @@ using HouseApp.Data;
 using HouseApp.HouseTest.Macros;
 using HouseApp.HouseTest.Mock;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
